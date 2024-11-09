@@ -8,12 +8,17 @@ from nacl.signing import SigningKey
 from pprint import pprint
 from pydantic import BaseModel
 from diskcache import Cache
+from dotenv import load_dotenv
+import os
 
 # setup cache
 cache = Cache("cache")
 
-API_KEY = "rh-api-065823fa-4f77-4514-9e54-27767f5e914c"
-BASE64_PRIVATE_KEY = "lTov8D6Wgp6xbi1rKUAG4GP3KCT/9gk7NoKjjJ8Mk54="
+# load environment variables
+load_dotenv()
+
+API_KEY = os.getenv("ROBINHOOD_API_KEY")
+BASE64_PRIVATE_KEY = os.getenv("ROBINHOOD_BASE64_PRIVATE_KEY")
 
 
 
