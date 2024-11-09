@@ -330,19 +330,6 @@ def main():
     #     quantity = client.get_quantity_of_crypto(tp.symbol, 1)
     #     print(f"Can buy {quantity} {tp.asset_code} with $1 USD")
 
-    # get the current estimated price of SHIB-USD
-
-    target_symbols = ["SHIB-USD", "DOGE-USD"]
-
-    for symbol in target_symbols:
-        estimated_order_price_history_entry = client.get_current_estimated_price(symbol)
-        print(f"Current estimated price for {symbol}")
-        pprint(estimated_order_price_history_entry.dict())
-        write_to_mongo(estimated_order_price_history_entry)
-        # confirm the order is in the database
-        print(Collection.find_one({"symbol": symbol, "timestamp": estimated_order_price_history_entry.timestamp}))
-
-    # clear_mongo()
 
 if __name__ == "__main__":
     main()
