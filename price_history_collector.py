@@ -1,5 +1,6 @@
 from robinhood import EstimatedOrderPriceHistoryEntry, CryptoAPITrading
 from datetime import datetime
+from pprint import pprint
 
 # import and setup mongodb
 from pymongo import MongoClient
