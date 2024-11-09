@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from diskcache import Cache
 from dotenv import load_dotenv
 import os
+from dateutil import parser
 
 # setup cache
 cache = Cache("cache")
@@ -79,12 +80,14 @@ class EstimatedOrderPrice(BaseModel):
         else:
             price_including_spread_key = "ask_inclusive_of_buy_spread"
             spread_key = "buy_spread"
+        # Parse the timestamp using dateutil.parser.parse, which can handle the timezone and extended fractional seconds
+        timestamp = parser.parse(data["timestamp"])
         return cls(
             symbol=data["symbol"],
             price=float(data["price"]),
             quantity=float(data["quantity"]),
             side=data["side"],
-            timestamp=datetime.datetime.fromisoformat(data["timestamp"]),
+            timestamp=timestamp,
             price_including_spread=float(data[price_including_spread_key]),
             spread=float(data[spread_key]),
         )

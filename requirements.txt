@@ -4,3 +4,4 @@ pydantic
 diskcache
 pymongo
 python-dotenv
+python-dateutil
